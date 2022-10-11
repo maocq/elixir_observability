@@ -22,12 +22,12 @@ defmodule ElixirObservability.EntryPoint.ApiRest do
   plug(:dispatch)
 
   forward(
-    "/elixir_observability/api/health",
+    "/app/api/health",
     to: PlugCheckup,
     init_opts: PlugCheckup.Options.new(json_encoder: Jason, checks: ElixirObservability.EntryPoint.HealthCheck.checks)
   )
 
-  get "/elixir_observability/api/hello/" do
+  get "/app/api/hello/" do
     build_response("Hello World", conn)
   end
 
