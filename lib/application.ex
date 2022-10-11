@@ -36,7 +36,8 @@ defmodule ElixirObservability.Application do
 
   def env_children(_other_env) do
     [
-      {ElixirObservability.Adapters.Repository.Repo, []}
+      {ElixirObservability.Adapters.Repository.Repo, []},
+      {Finch, name: HttpFinch, pools: %{:default => [size: 500]}}
     ]
   end
 end
