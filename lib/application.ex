@@ -35,6 +35,8 @@ defmodule ElixirObservability.Application do
   end
 
   def env_children(_other_env) do
-    []
+    [
+      {ElixirObservability.Adapters.Repository.Repo, []}
+    ]
   end
 end

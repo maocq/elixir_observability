@@ -13,3 +13,12 @@ config :elixir_observability,
 
 config :logger,
        level: :debug
+
+config :elixir_observability, ElixirObservability.Adapters.Repository.Repo,
+       database: "compose-postgres",
+       username: "compose-postgres",
+       password: "compose-postgres",
+       hostname: "localhost",
+       pool_size: 10,
+       queue_target: 5000,
+       timeout: :timer.minutes(1)

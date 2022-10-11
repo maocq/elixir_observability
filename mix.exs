@@ -33,6 +33,8 @@ defmodule ElixirObservability.MixProject do
       {:poison, "~> 4.0"},
       {:cors_plug, "~> 2.0"},
       {:timex, "~> 3.0"},
+      {:ecto_sql, "~> 3.9"},
+      {:postgrex, "~> 0.16"},
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_unit_sonarqube, "~> 0.1", only: :test},
     ]
