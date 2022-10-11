@@ -7,6 +7,13 @@ defmodule ElixirObservability.Adapters.Repository.Account.AccountDataRepository 
 
   def find_by_id(id), do: AccountData |> Repo.get(id) |> to_entity
 
+  def update(entity) do
+    row = %AccountData{id: entity.id}
+    Repo.update!(Ecto.Changeset.change(row, %{user_id: entity.user_id, account: entity.account, name: entity.name, number: entity.number,
+     balance: entity.balance, currency: entity.currency, type: entity.type, bank: entity.bank,
+     creation_date: entity.creation_date, update_date: entity.update_date})) |> to_entity
+  end
+
   defp to_entity(nil), do: nil
 
   defp to_entity(data) do

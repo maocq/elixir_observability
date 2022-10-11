@@ -3,8 +3,10 @@ defmodule ElixirObservability.EntryPoint.ApiRest do
   @moduledoc """
   Access point to the rest exposed services
   """
-  alias ElixirObservability.Utils.DataTypeUtils
+  #alias ElixirObservability.Utils.DataTypeUtils
   alias ElixirObservability.EntryPoint.ErrorHandler
+  alias ElixirObservability.Domain.UseCase.HelloUseCase
+
   require Logger
   use Plug.Router
   use Timex
@@ -27,10 +29,18 @@ defmodule ElixirObservability.EntryPoint.ApiRest do
     init_opts: PlugCheckup.Options.new(json_encoder: Jason, checks: ElixirObservability.EntryPoint.HealthCheck.checks)
   )
 
-  get "/app/api/hello/" do
+  get "/app/api/hello" do
     build_response("Hello World", conn)
   end
 
+  get "/app/api/usecase" do
+    case HelloUseCase.hello() do
+      {:ok, response} -> response |> build_response(conn)
+      {:error, error} ->
+        Logger.error("Error case one #{inspect(error)}")
+        build_response(%{status: 500, body: "Error"}, conn)
+    end
+  end
 
   def build_response(%{status: status, body: body}, conn) do
     conn

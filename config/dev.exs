@@ -22,3 +22,8 @@ config :elixir_observability, ElixirObservability.Adapters.Repository.Repo,
        pool_size: 10,
        queue_target: 5000,
        timeout: :timer.minutes(1)
+
+
+config :elixir_observability,
+       account_behaviour: ElixirObservability.Adapters.Repository.Account.AccountDataRepository,
+       hello_behaviour: ElixirObservability.Adapters.RestConsumer.RestConsumer

@@ -1,5 +1,7 @@
 defmodule ElixirObservability.Adapters.RestConsumer.RestConsumer do
 
+  @behaviour ElixirObservability.Domain.Behaviours.HelloBehaviour
+
   def hello(latency) do
     url = "http://localhost:3100/#{latency}"
 
