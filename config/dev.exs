@@ -26,16 +26,18 @@ config :elixir_observability, ElixirObservability.Adapters.Repository.Repo,
 
 config :opentelemetry, :resource, service: %{name: "Elixir-MS"}
 
+#config :opentelemetry, traces_exporter: :none
+
 config :opentelemetry, :processors,
   otel_batch_processor: %{
+#    exporter: {
+#      :opentelemetry_zipkin,
+#      %{address: 'http://localhost:9411/api/v2/spans', local_endpoint: %{service_name: "XXX"}}
+#    }
     exporter: {
-      :opentelemetry_zipkin,
-      %{address: 'http://localhost:9411/api/v2/spans', local_endpoint: %{service_name: "XXX"}}
+      :opentelemetry_exporter,
+      %{endpoints: [{:http, 'localhost', 4318, []}]}
     }
-    #exporter: {
-    #  :opentelemetry_exporter,
-    #  %{endpoints: ["http://localhost:4318"]}
-    #}
   }
 
 config :elixir_observability,
