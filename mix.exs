@@ -36,6 +36,13 @@ defmodule ElixirObservability.MixProject do
       {:ecto_sql, "~> 3.9"},
       {:postgrex, "~> 0.16"},
       {:finch, "~> 0.13"},
+
+      {:opentelemetry, "~> 1.1"},
+      {:opentelemetry_telemetry, "~> 1.0"}, # OpentelemetryPlugCowboy
+      {:opentelemetry_ecto, "~> 1.0"},
+      {:opentelemetry_zipkin, "~> 1.1"},
+      {:opentelemetry_logger_metadata, "~> 0.1.0"},
+
       {:excoveralls, "~> 0.10", only: :test},
       {:ex_unit_sonarqube, "~> 0.1", only: :test},
     ]

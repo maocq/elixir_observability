@@ -11,6 +11,11 @@ defmodule ElixirObservability.Application do
 
     CertificatesAdmin.setup()
 
+    OpentelemetryPlugCowboy.setup()
+    OpentelemetryFinch.setup()
+    OpentelemetryEcto.setup([:elixir_observability, :adapters, :repository, :repo])
+    OpentelemetryLoggerMetadata.setup()
+
     children = with_plug_server(config) ++ all_env_children() ++ env_children(Mix.env())
 
     opts = [strategy: :one_for_one, name: ElixirObservability.Supervisor]
