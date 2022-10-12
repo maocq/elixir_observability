@@ -2,6 +2,7 @@ defmodule ElixirObservability.Application do
   alias ElixirObservability.EntryPoint.ApiRest
   alias ElixirObservability.Config.{AppConfig, ConfigHolder}
   alias ElixirObservability.Utils.CertificatesAdmin
+  alias ElixirObservability.Utils.CustomTelemetry
 
   use Application
   require Logger
@@ -18,6 +19,7 @@ defmodule ElixirObservability.Application do
 
     children = with_plug_server(config) ++ all_env_children() ++ env_children(Mix.env())
 
+    CustomTelemetry.custom_telemetry_events()
     opts = [strategy: :one_for_one, name: ElixirObservability.Supervisor]
     Supervisor.start_link(children, opts)
   end
@@ -31,7 +33,8 @@ defmodule ElixirObservability.Application do
 
   def all_env_children() do
     [
-      {ConfigHolder, AppConfig.load_config()}
+      {ConfigHolder, AppConfig.load_config()},
+      {TelemetryMetricsPrometheus, [metrics: CustomTelemetry.metrics()]}
     ]
   end
 

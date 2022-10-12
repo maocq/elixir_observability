@@ -37,6 +37,10 @@ defmodule ElixirObservability.MixProject do
       {:postgrex, "~> 0.16"},
       {:finch, "~> 0.13"},
 
+      {:telemetry, "~> 1.1", override: true},
+      {:telemetry_poller, "~> 1.0"},
+      {:telemetry_metrics_prometheus, "~> 1.1.0"},
+
       {:opentelemetry, "~> 1.1"},
       {:opentelemetry_telemetry, "~> 1.0"}, # OpentelemetryPlugCowboy
       {:opentelemetry_ecto, "~> 1.0"},
