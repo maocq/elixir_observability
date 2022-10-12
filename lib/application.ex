@@ -12,7 +12,7 @@ defmodule ElixirObservability.Application do
 
     CertificatesAdmin.setup()
 
-    OpentelemetryPlugCowboy.setup()
+    OpentelemetryPhoenix.setup([endpoint_prefix: [:plug, :router_dispatch]])
     OpentelemetryFinch.setup()
     OpentelemetryEcto.setup([:elixir_observability, :adapters, :repository, :repo])
     OpentelemetryLoggerMetadata.setup()

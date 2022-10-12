@@ -42,7 +42,7 @@ defmodule ElixirObservability.MixProject do
       {:telemetry_metrics_prometheus, "~> 1.1.0"},
 
       {:opentelemetry, "~> 1.1"},
-      {:opentelemetry_telemetry, "~> 1.0"}, # OpentelemetryPlugCowboy
+      {:opentelemetry_phoenix, "~> 1.0"},
       {:opentelemetry_ecto, "~> 1.0"},
       #{:opentelemetry_zipkin, "~> 1.1"},
       {:opentelemetry_exporter, "~> 1.2"},
